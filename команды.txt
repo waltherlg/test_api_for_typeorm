@@ -1,0 +1,15 @@
+
+-- это работает 
+yarn typeorm migration:generate -d ./src/db/data-source.ts ./src/db/migrations/add_user_stat
+
+yarn typeorm migration:create ./src/db/migrations/first_migration
+
+-- это работает yarn typeorm migration:run -- -d ./src/db/data-source.ts
+
+yarn typeorm-ts-node-esm migration:run -- -d ./src/db/data-source.ts
+
+yarn typeorm-ts-node-esm migration:revert -- -d ./src/db/data-source.ts
+
+ssh -R 80:localhost:3000 serveo.net
+
+--
