@@ -2,6 +2,9 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { AppService } from './app.service';
 import { AppRepository } from './app.repository';
 import { IsString, Length } from 'class-validator';
+import fs from 'node:fs';
+import path from 'node:path'
+import { readTextFileAsync } from './helpers';
 
 export class UserLoginInput {
   @IsString()
@@ -23,7 +26,9 @@ export class AppController {
 
   @Get('avatar')
   async getAvatar(){
-    
+    const htmlContent = await readTextFileAsync('pathToFile')
+
+    return htmlContent  
   }
 
   @Get()
