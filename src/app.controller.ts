@@ -21,6 +21,11 @@ export class AppController {
     private readonly appRepository: AppRepository
   ) {}
 
+  @Get('avatar')
+  async getAvatar(){
+    
+  }
+
   @Get()
   getHello(): string {
     return this.appService.getHello();
