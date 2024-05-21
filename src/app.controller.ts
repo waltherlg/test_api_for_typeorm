@@ -26,7 +26,7 @@ export class AppController {
 
   @Get('avatar')
   async getAvatar(){
-    const htmlContent = await readTextFileAsync('pathToFile')
+    const htmlContent = await readTextFileAsync(path.join('views', 'avatar-change-page.html'))
 
     return htmlContent  
   }
