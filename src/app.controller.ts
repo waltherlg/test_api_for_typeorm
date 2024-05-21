@@ -3,7 +3,7 @@ import { AppService } from './app.service';
 import { AppRepository } from './app.repository';
 import { IsString, Length } from 'class-validator';
 import fs from 'node:fs';
-import path from 'node:path'
+import { join } from 'node:path'
 import { readTextFileAsync } from './helpers';
 
 export class UserLoginInput {
@@ -26,7 +26,7 @@ export class AppController {
 
   @Get('avatar')
   async getAvatar(){
-    const htmlContent = await readTextFileAsync(path.join('views', 'avatar-change-page.html'))
+    const htmlContent = await readTextFileAsync(join('views', 'avatar-change-page.html'))
 
     return htmlContent  
   }
