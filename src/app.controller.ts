@@ -1,10 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { AppService } from './app.service';
 import { AppRepository } from './app.repository';
 import { IsString, Length } from 'class-validator';
-import fs from 'node:fs';
+import fs, { existsSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path'
-import { readTextFileAsync } from './helpers';
+import { ensureDirSinc, readTextFileAsync, saveFileAsync } from './helpers';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 export class UserLoginInput {
   @IsString()
@@ -29,6 +30,18 @@ export class AppController {
     const htmlContent = await readTextFileAsync(join('views', 'avatar-change-page.html'))
 
     return htmlContent  
+  }
+
+  @Post('post-avatar')
+  @UseInterceptors(FileInterceptor('avatar'))
+  async updateAvatar(@UploadedFile() avatarFile: Express.Multer.File){
+    const dirPath = join('content', 'users', '10')
+    ensureDirSinc(dirPath)
+
+    console.log(avatarFile);
+    const safeFilename = Buffer.from(avatarFile.originalname, 'binary').toString('utf8');
+    await saveFileAsync(join(dirPath, safeFilename), avatarFile.buffer )
+    return 'avatar apdated'
   }
 
   @Get()
