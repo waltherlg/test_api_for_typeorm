@@ -52,7 +52,7 @@ export class AppRepository {
       where: {
         userId: userId,
       },
-      //relations: ['PlayerStatistic']
+      relations: ['PlayerStatistic.Profile']
   })  
     return result
   }

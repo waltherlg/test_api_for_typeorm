@@ -32,17 +32,17 @@ export class AppController {
     return htmlContent  
   }
 
-  @Post('post-avatar')
-  @UseInterceptors(FileInterceptor('avatar'))
-  async updateAvatar(@UploadedFile() avatarFile: Express.Multer.File){
-    const dirPath = join('content', 'users', '10')
-    ensureDirSinc(dirPath)
+  // @Post('post-avatar')
+  // @UseInterceptors(FileInterceptor('avatar'))
+  // async updateAvatar(@UploadedFile() avatarFile: Express.Multer.File){
+  //   const dirPath = join('content', 'users', '10')
+  //   ensureDirSinc(dirPath)
 
-    console.log(avatarFile);
-    const safeFilename = Buffer.from(avatarFile.originalname, 'binary').toString('utf8');
-    await saveFileAsync(join(dirPath, safeFilename), avatarFile.buffer )
-    return 'avatar apdated'
-  }
+  //   console.log(avatarFile);
+  //   const safeFilename = Buffer.from(avatarFile.originalname, 'binary').toString('utf8');
+  //   await saveFileAsync(join(dirPath, safeFilename), avatarFile.buffer )
+  //   return 'avatar apdated'
+  // }
 
   @Get()
   getHello(): string {

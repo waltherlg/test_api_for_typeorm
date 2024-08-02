@@ -18,5 +18,6 @@ export class Users extends UserDto {
   @Column()
   createdAt: Date
   @OneToOne(() => PlayerStatistic, (p) => p.Users)
+  //@OneToOne(() => PlayerStatistic, (p) => p.Users, {eager: true})
   PlayerStatistic: PlayerStatistic | null;
 }

@@ -20,6 +20,7 @@ export class PlayerStatistic extends PlayerStatisticDto {
     userId: string;
     @Column()
     sumScore: number;
-    @OneToOne(() => Profile, (p) => p.PlayerStatistic, { eager: true, nullable: true })
+    //@OneToOne(() => Profile, (p) => p.PlayerStatistic, { eager: true, nullable: true })
+    @OneToOne(() => Profile, (p) => p.PlayerStatistic, { nullable: true })
     Profile: Profile | null
 }
